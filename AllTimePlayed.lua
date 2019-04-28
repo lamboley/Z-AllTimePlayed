@@ -19,10 +19,9 @@ ChatFrame_DisplayTimePlayed = function(...)
 end
 
 function ldb:OnEnter(motion) ShowPlaytime() end
---~ function ldb:OnLeave() end
 
 function addon:OnInitialize()
-  self.db = LibStub("AceDB-3.0"):New("AllTimePlayedMinimap", {
+  self.db = LibStub("AceDB-3.0"):New("AllTimePlayedDB", {
     profile = {
       minimap = {
         hide =  false,
@@ -41,8 +40,10 @@ function ShowPlaytime()
 
   local totaltime = 0
   for player,time in pairs(AllTimePlayedDB) do
-    print("|cffffff00"..player.." : "..secondsToDays(time) )
-    totaltime = totaltime + time
+    if (type(time) == 'number') then
+      print("|cffffff00"..player.." : "..secondsToDays(time) )
+      totaltime = totaltime + time
+    end
   end
 
   print("|cffffff00Temps de jeu total : "..secondsToDays(totaltime) )
