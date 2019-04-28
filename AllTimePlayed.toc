@@ -1,9 +1,9 @@
 ## Interface: 80100
-## Version: 0.01
+## Version: 0.02
 ## Title: AllTimePlayed
 ## Notes: Show the played time for all characteres.
 ## Author: LAMBOLEY Lucas
-## SavedVariables: AllTimePlayedDB AllTimePlayedMinimap
+## SavedVariables: AllTimePlayedDB
 
 libs\LibStub\LibStub.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
