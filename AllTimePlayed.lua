@@ -23,15 +23,20 @@ function addon:DrawTooltip(anchor)
   for player,time in pairs(AllTimePlayedDB) do
     if (type(time) == 'number') then
       line, column = tooltip:AddLine()
-      tooltip:SetCell(line, 1, player..": ", "LEFT", 1)
-      tooltip:SetCell(line, 2, secondsToDays(time), "RIGHT")
+      if (UnitName("player") == player) then
+        tooltip:SetCell(line, 1, "|cffffff00"..player..": ", "LEFT", 1)
+        tooltip:SetCell(line, 2, "|cffffff00"..secondsToDays(time), "RIGHT")
+      else
+        tooltip:SetCell(line, 1, "|cff808080"..player..": ", "LEFT", 1)
+        tooltip:SetCell(line, 2, "|cff808080"..secondsToDays(time), "RIGHT")
+      end
       totaltime = totaltime + time
     end
   end
 
   line, column = tooltip:AddLine()
-  tooltip:SetCell(line, 1, "Total: ", "LEFT", 1)
-  tooltip:SetCell(line, 2, secondsToDays(totaltime), "RIGHT")
+  tooltip:SetCell(line, 1, "|cff008000Total: ", "LEFT", 1)
+  tooltip:SetCell(line, 2, "|cff008000"..secondsToDays(totaltime), "RIGHT")
 
   tooltip:UpdateScrolling()
 
@@ -96,7 +101,7 @@ function ShowPlaytime()
     end
   end
 
-  print("|cffffff00Temps de jeu total : "..secondsToDays(totaltime) )
+  print("|cffffff00Total time played : "..secondsToDays(totaltime) )
 end
 
 function secondsToDays(inputSeconds)
@@ -104,5 +109,5 @@ function secondsToDays(inputSeconds)
   h = math.floor((bit.mod(inputSeconds,86400))/3600)
   m = math.floor(bit.mod((bit.mod(inputSeconds,86400)),3600)/60)
   s = math.floor(bit.mod(bit.mod((bit.mod(inputSeconds,86400)),3600),60))
- return  d.." jours, "..h.." heures, "..m.." minutes, "..s.." secondes"
+ return  d.." days, "..h.." hours, "..m.." minutes, "..s.." seconds"
 end
