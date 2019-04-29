@@ -1,11 +1,12 @@
 ## Interface: 80100
-## Version: 0.02
+## Version: 0.03
 ## Title: AllTimePlayed
 ## Notes: Show the played time for all characteres.
 ## Author: LAMBOLEY Lucas
 ## SavedVariables: AllTimePlayedDB
 
 libs\LibStub\LibStub.lua
+libs\LibQTip-1.0\LibQTip-1.0.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
 libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
