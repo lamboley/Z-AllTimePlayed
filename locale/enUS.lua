@@ -1,5 +1,13 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("AllTimePlayed", "enUS", true)
 
+L["Colors"] = true
+L["Current character"] = true
+L["Color of current character"] = true
+L["Others characters"] = true
+L["Color of others characters"] = true
+L["Total"] = true
+L["Color of total"] = true
+L["ERROR - Should be a hexadecimal code"] = true
 L["Description"] = true
 L["What does AllTimePlayed ?"] = true
 L["It show the played time for all characters when pointer is on the minimap button."] = true
