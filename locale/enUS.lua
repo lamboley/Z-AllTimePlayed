@@ -26,6 +26,7 @@ L["Data are updated when"] = true
 L["You log in."] = true
 L["You log out."] = true
 L["You change of zone."] = true
+L["You mouseover the minimap button."] = true
 L["You reload your UI."] = true
 L["You execute the /played command."] = true
 L["I have found a bug, how can I contact you ?"] = true
