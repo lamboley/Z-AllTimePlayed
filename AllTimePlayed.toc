@@ -4,7 +4,7 @@
 ## Notes: Show the played time for all characters.
 ## Author: LAMBOLEY Lucas
 ## SavedVariables: AllTimePlayedDB
-## OptionalDeps: Ace3, LibDBIcon-1.0, LibQTip-1.0
+## Dependencies: LibStub, CallbackHandler-1.0, LibDataBroker-1.1, LibQTip-1.0, Ace3, LibDBIcon-1.0
 
 libs\LibStub\LibStub.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
