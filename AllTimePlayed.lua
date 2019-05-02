@@ -42,7 +42,7 @@ local myOptions = {
   childGroups = "tree",
   plugins = {},
   args = {
-    kb = {
+    erase = {
       order = 1,
       type = "execute",
       name = L["Clean data"],
@@ -55,31 +55,56 @@ local myOptions = {
         end
       end,
     },
-    desc = {
-      name = L["Description"],
+    col = {
+      name = L["Colors"],
       type = "group",
-      order = 9999,
+      order = 1,
       args = {
-        line1 = {
-          type = "description",
-          name = "|cffffd200" .. L["What does AllTimePlayed ?"] .. "|r",
+        colc = {
           order = 1,
-        },
-        line2 = {
-          type = "description",
-          name = L["It show the played time for all characters when pointer is on the minimap button."],
+          type = "input",
+          name = L["Current character"],
+          desc = L["Color of current character"],
+          validate = function(info, value) return VerifHexa(value) end,
+          get = function(info) return AllTimePlayed.db.profile.colcurrent end,
+          set = function(info, value) AllTimePlayed.db.profile.colcurrent = value end,
+        colo = {
           order = 2,
+          type = "input",
+          name = L["Others characters"],
+          desc = L["Color of others characters"],
+          validate = function(info, value) return VerifHexa(value) end,
+          get = function(info) return AllTimePlayed.db.profile.colother end,
+          set = function(info, value) AllTimePlayed.db.profile.colother = value end,
+        },
+        colt = {
+          order = 3,
+          type = "input",
+          name = L["Total"],
+          desc = L["Color of total"],
+          validate = function(info, value) return VerifHexa(value) end,
+          get = function(info) return AllTimePlayed.db.profile.coltotal end,
+          set = function(info, value) AllTimePlayed.db.profile.coltotal = value end,
         },
       }
-    }
+    },
+  }
+}
+
+local defaults = {
+  profile = {
+    minimap = { hide = false },
+    colcurrent = "ffff00",
+    colother = "808080",
+    coltotal = "008000",
   }
 }
 
 function AllTimePlayed:OnInitialize()
-  self.db = LibStub("AceDB-3.0"):New("AllTimePlayedDB", { global = { minimap = { hide = false }}})
+  self.db = LibStub("AceDB-3.0"):New("AllTimePlayedDB", defaults)
 
   LibStub("AceConfig-3.0"):RegisterOptionsTable("AllTimePlayed", myOptions)
-  AceConfigDialog:SetDefaultSize("AllTimePlayed", 680, 560)
+  AceConfigDialog:SetDefaultSize("AllTimePlayed", 860, 660)
 
   LibStub("LibDBIcon-1.0"):Register("AllTimePlayed", LDBObj, self.db.profile.minimap)
   self:RegisterEvent("TIME_PLAYED_MSG")
@@ -102,19 +127,19 @@ function AllTimePlayed:DrawTooltip(anchor)
     if (type(time) == 'number') then
       line, column = tooltip:AddLine()
       if (UnitName("player") == player) then
-        tooltip:SetCell(line, 1, "|cffffff00" .. player .. ": ", "LEFT", 1)
-        tooltip:SetCell(line, 2, "|cffffff00" .. SecondsToDays(time), "RIGHT")
+        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.colcurrent .. player .. ": ", "LEFT", 1)
+        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.colcurrent .. SecondsToDays(time), "RIGHT")
       else
-        tooltip:SetCell(line, 1, "|cff808080" .. player .. ": ", "LEFT", 1)
-        tooltip:SetCell(line, 2, "|cff808080" .. SecondsToDays(time), "RIGHT")
+        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.colother .. player .. ": ", "LEFT", 1)
+        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.colother .. SecondsToDays(time), "RIGHT")
       end
       totaltime = totaltime + time
     end
   end
 
   line, column = tooltip:AddLine()
-  tooltip:SetCell(line, 1, "|cff008000" .. L["Total:"], "LEFT", 1)
-  tooltip:SetCell(line, 2, "|cff008000" .. SecondsToDays(totaltime), "RIGHT")
+  tooltip:SetCell(line, 1, "|cff" .. self.db.profile.coltotal .. L["Total:"], "LEFT", 1)
+  tooltip:SetCell(line, 2, "|cff" .. self.db.profile.coltotal .. SecondsToDays(totaltime), "RIGHT")
 
   tooltip:UpdateScrolling()
   tooltip:Show()
@@ -122,6 +147,14 @@ end
 
 function AllTimePlayed:HideTooltip() self.tooltip:Hide() end
 function AllTimePlayed:TIME_PLAYED_MSG(name, total, currentLevel) AllTimePlayedDB[UnitName("player")] = total end
+
+function VerifHexa(value)
+  if string.match(value, "^%x%x%x%x%x%x$") then
+    return true
+  else
+    return "ERROR - Should be a hexadecimal code"
+  end
+end
 
 function RequestPlayed()
   playedAllTimePlayed = true
