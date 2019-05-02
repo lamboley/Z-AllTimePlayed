@@ -171,7 +171,7 @@ local myOptions = {
         },
         line5 = {
           type = "description",
-          name = " - " .. L["You log in."] .. "\n - " .. L["You log out."] .. "\n - " .. L["You change of zone."] .. "\n - " .. L["You reload your UI."] .. "\n - " .. L["You execute the /played command."] .. "\n",
+          name = " - " .. L["You log in."] .. "\n - " .. L["You log out."] .. "\n - " .. L["You change of zone."] .. "\n - " .. L["You mouseover the minimap button."]  .. "\n - " .. L["You reload your UI."] .. "\n - " .. L["You execute the /played command."] .. "\n",
           order = 5
         },
         line6 = {
