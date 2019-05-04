@@ -1,5 +1,5 @@
 ## Interface: 80100
-## Version: 1.01
+## Version: 1.02
 ## Title: AllTimePlayed
 ## Notes: Show the played time for all characters.
 ## Author: LAMBOLEY Lucas

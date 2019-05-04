@@ -1,45 +1,45 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("AllTimePlayed", "frFR")
+local L = LibStub("AceLocale-3.0"):NewLocale("AllTimePlayed", "frFR", true)
 if not L then return end
 
-L["Clean current character"] = "Nettoyer le personnage courant"
-L["Erase current character data"] = "Efface les données du personnage courant"
-L["Clean others characters"] = "Nettoyer les autres personnages"
-L["Erase others characters data"] = "Efface les données des autres personnages"
+L["Nettoyer le personnage courant"] = true
+L["Efface les données du personnage courant"] = true
+L["Nettoyer les autres personnages"] = true
+L["Efface les données des autres personnages"] = true
 
-L["Colors"] = "Couleurs"
+L["Couleurs"] = true
 
-L["Color in minimap button"] = "Couleur dans le bouton de la minimap"
-L["Color in chat"] = "Couleur dans le chat"
+L["Couleur dans le bouton de la minimap"] = true
+L["Couleur dans le chat"] = true
 
-L["Current character"] = "Personnage actuel"
-L["Color of current character"] = "Couleur du personnage actuel"
-L["Others characters"] = "Autres personnages"
-L["Color of others characters"] = "Couleur des autres personnages"
-L["Total"] = "Total"
-L["Color of total"] = "Couleur du total"
+L["Personnage actuel"] = true
+L["Couleur du personnage actuel"] = true
+L["Autres personnages"] = true
+L["Couleur des autres personnages"] = true
+L["Total"] = true
+L["Couleur du total"] = true
 
-L["FAQ"] = "FAQ"
-L["Frequently Asked Questions"] = "Foire aux questions"
-L["What is AllTimePlayed ?"] = "Qu'est-ce que AllTimePlayed ?"
-L["It's an addon which record the played time per character. It give multiple way to print the info to the user."] = "C'est un addon qui enregistre le temps joué par personnage. Il offre plusieurs façon au joueur d'afficher l'information."
-L["When data are updated ?"] = "Quand est-ce que les données sont mise à jours ?"
-L["Data are updated when"] = "Les données sont mise à jours quand"
-L["You log in."] = "Vous vous connecté."
-L["You log out."] = "Vous vous déconnecté."
-L["You change of zone."] = "Vous changez de zone."
-L["You mouseover the minimap button."] = "Vous pointez votre souris sur le bouton de la minimap."
-L["You reload your UI."] = "Vous rechargez votre interface."
-L["You execute the /played command."] = "Vous executez la commande /played."
-L["I have found a bug, how can I contact you ?"] = "J'ai trouvé un bogue, comment puis-je te contacter ?"
-L["You can create an issue on my github |cffffff78<https://github.com/lamboley/AllTimePlayed>|r"] = "Vous pouvez créer une issue sur mon github |cffffff78<https://github.com/lamboley/AllTimePlayed>|r"
+L["FAQ"] = true
+L["Foire aux questions"] = true
+L["Qu'est-ce que AllTimePlayed ?"] = true
+L["C'est un addon qui enregistre le temps joué par personnage. Il offre plusieurs façon au joueur d'afficher l'information."] = true
+L["Quand est-ce que les données sont mise à jours ?"] = true
+L["Les données sont mise à jours quand"] = true
+L["Vous vous connecté."] = true
+L["Vous vous déconnecté."] = true
+L["Vous changez de zone."] = true
+L["Vous pointez votre souris sur le bouton de la minimap."] = true
+L["Vous rechargez votre interface."] = true
+L["Vous executez la commande /played."] = true
+L["J'ai trouvé un bogue, comment puis-je te contacter ?"] = true
+L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/AllTimePlayed/issues>|r."] = true
 
-L["Total:"] = "Total:"
+L["Total:"] = true
 
-L["ERROR - Should be a hexadecimal code"] = "ERREUR - Doit être un code hexadécimale"
+L["ERREUR - Doit être un code hexadécimale"] = true
 
-L["Total time played"] = "Temps de jeu total"
+L["Temps de jeu total"] = true
 
-L[" days, "] = " jours, "
-L[" hours, "] = " heures, "
-L[" minutes, "] = " minutes, "
-L[" seconds"] = " secondes"
+L[" jours, "] = true
+L[" heures, "] = true
+L[" minutes, "] = true
+L[" secondes"] = true

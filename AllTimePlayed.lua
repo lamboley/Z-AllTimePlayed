@@ -45,8 +45,8 @@ local myOptions = {
     erase_current = {
       order = 1,
       type = "execute",
-      name = L["Clean current character"],
-      desc = L["Erase current character data"],
+      name = L["Nettoyer le personnage courant"],
+      desc = L["Efface les données du personnage courant"],
       func = function()
         for player,time in pairs(AllTimePlayedDB) do
           if (type(time) == 'number') then
@@ -60,8 +60,8 @@ local myOptions = {
     erase_others = {
       order = 2,
       type = "execute",
-      name = L["Clean others characters"],
-      desc = L["Erase others characters data"],
+      name = L["Nettoyer les autres personnages"],
+      desc = L["Efface les données des autres personnages"],
       func = function()
         for player,time in pairs(AllTimePlayedDB) do
           if (type(time) == 'number') then
@@ -73,20 +73,20 @@ local myOptions = {
       end,
     },
     col = {
-      name = L["Colors"],
+      name = L["Couleurs"],
       type = "group",
       order = 10,
       args = {
         col_header = {
           order = 1,
           type = "header",
-          name = L["Color in minimap button"],
+          name = L["Couleur dans le bouton de la minimap"],
         },
         col_current = {
           order = 2,
           type = "input",
-          name = L["Current character"],
-          desc = L["Color of current character"],
+          name = L["Personnage actuel"],
+          desc = L["Couleur du personnage actuel"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.colcurrent end,
           set = function(info, value) AllTimePlayed.db.profile.colcurrent = value end
@@ -94,8 +94,8 @@ local myOptions = {
         col_others = {
           order = 3,
           type = "input",
-          name = L["Others characters"],
-          desc = L["Color of others characters"],
+          name = L["Autres personnages"],
+          desc = L["Couleur des autres personnages"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.colothers end,
           set = function(info, value) AllTimePlayed.db.profile.colothers = value end
@@ -104,7 +104,7 @@ local myOptions = {
           order = 4,
           type = "input",
           name = L["Total"],
-          desc = L["Color of total"],
+          desc = L["Couleur du total"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.coltotal end,
           set = function(info, value) AllTimePlayed.db.profile.coltotal = value end
@@ -112,13 +112,13 @@ local myOptions = {
         col_chat_header = {
           order = 5,
           type = "header",
-          name = L["Color in chat"]
+          name = L["Couleur dans le chat"]
         },
         col_chat_current = {
           order = 6,
           type = "input",
-          name = L["Current character"],
-          desc = L["Color of current character"],
+          name = L["Personnage actuel"],
+          desc = L["Couleur du personnage actuel"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.colchatcurrent end,
           set = function(info, value) AllTimePlayed.db.profile.colchatcurrent = value end
@@ -126,8 +126,8 @@ local myOptions = {
         col_chat_others = {
           order = 7,
           type = "input",
-          name = L["Others characters"],
-          desc = L["Color of others characters"],
+          name = L["Autres personnages"],
+          desc = L["Couleur des autres personnages"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.colchatothers end,
           set = function(info, value) AllTimePlayed.db.profile.colchatothers = value end
@@ -136,7 +136,7 @@ local myOptions = {
           order = 8,
           type = "input",
           name = L["Total"],
-          desc = L["Color of total"],
+          desc = L["Couleur du total"],
           validate = function(info, value) return VerifHexa(value) end,
           get = function(info) return AllTimePlayed.db.profile.colchattotal end,
           set = function(info, value) AllTimePlayed.db.profile.colchattotal = value end
@@ -145,43 +145,43 @@ local myOptions = {
     },
     faq = {
       name = L["FAQ"],
-      desc = L["Frequently Asked Questions"],
+      desc = L["Foire aux questions"],
       type = "group",
       order = 1000,
       args = {
         line1 = {
           type = "description",
-          name = "|cffffd200" .. L["What is AllTimePlayed ?"] .. "|r",
+          name = "|cffffd200" .. L["Qu'est-ce que AllTimePlayed ?"] .. "|r",
           order = 1
         },
         line2 = {
           type = "description",
-          name = L["It's an addon which record the played time per character. It give multiple way to print the info to the user."] .. "\n",
+          name = L["C'est un addon qui enregistre le temps joué par personnage. Il offre plusieurs façon au joueur d'afficher l'information."] .. "\n",
           order = 2
         },
         line3 = {
           type = "description",
-          name = "|cffffd200" .. L["When data are updated ?"] .. "|r",
+          name = "|cffffd200" .. L["Quand est-ce que les données sont mise à jours ?"] .. "|r",
           order = 3
         },
         line4 = {
           type = "description",
-          name = L["Data are updated when"] .. " :",
+          name = L["Les données sont mise à jours quand"] .. " :",
           order = 4
         },
         line5 = {
           type = "description",
-          name = " - " .. L["You log in."] .. "\n - " .. L["You log out."] .. "\n - " .. L["You change of zone."] .. "\n - " .. L["You mouseover the minimap button."]  .. "\n - " .. L["You reload your UI."] .. "\n - " .. L["You execute the /played command."] .. "\n",
+          name = " - " .. L["Vous vous connecté."] .. "\n - " .. L["Vous vous déconnecté."] .. "\n - " .. L["Vous changez de zone."] .. "\n - " .. L["Vous pointez votre souris sur le bouton de la minimap."]  .. "\n - " .. L["Vous rechargez votre interface."] .. "\n - " .. L["Vous executez la commande /played."] .. "\n",
           order = 5
         },
         line6 = {
           type = "description",
-          name = "|cffffd200" .. L["I have found a bug, how can I contact you ?"],
+          name = "|cffffd200" .. L["J'ai trouvé un bogue, comment puis-je te contacter ?"],
           order = 6
         },
         line7 = {
           type = "description",
-          name = L["You can create an issue on my github |cffffff78<https://github.com/lamboley/AllTimePlayed>|r"] .. "\n",
+          name = L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/AllTimePlayed/issues>|r."] .. "\n",
           order = 7
         }
       }
@@ -205,7 +205,7 @@ function AllTimePlayed:OnInitialize()
   self.db = LibStub("AceDB-3.0"):New("AllTimePlayedDB", defaults)
 
   LibStub("AceConfig-3.0"):RegisterOptionsTable("AllTimePlayed", myOptions)
-  AceConfigDialog:SetDefaultSize("AllTimePlayed", 760, 295)
+  AceConfigDialog:SetDefaultSize("AllTimePlayed", 760, 310)
 
   LibStub("LibDBIcon-1.0"):Register("AllTimePlayed", LDBObj, self.db.profile.minimap)
   self:RegisterEvent("TIME_PLAYED_MSG")
@@ -259,7 +259,7 @@ function VerifHexa(value)
   if string.match(value, "^%x%x%x%x%x%x$") then
     return true
   else
-    return L["ERROR - Should be a hexadecimal code"]
+    return L["ERREUR - Doit être un code hexadécimale"]
   end
 end
 
@@ -282,7 +282,7 @@ function ShowPlaytime()
       totaltime = totaltime + time
     end
   end
-  print("|cff" .. AllTimePlayed.db.profile.colchattotal .. L["Total time played"] .. " : " .. SecondsToDays(totaltime) )
+  print("|cff" .. AllTimePlayed.db.profile.colchattotal .. L["Temps de jeu total"] .. " : " .. SecondsToDays(totaltime) )
 end
 
 function SecondsToDays(inputSeconds)
@@ -290,5 +290,5 @@ function SecondsToDays(inputSeconds)
   hours = math.floor((bit.mod(inputSeconds,86400))/3600)
   minutes = math.floor(bit.mod((bit.mod(inputSeconds,86400)),3600)/60)
   seconds = math.floor(bit.mod(bit.mod((bit.mod(inputSeconds,86400)),3600),60))
- return days .. L[" days, "] .. hours .. L[" hours, "] .. minutes .. L[" minutes, "] .. seconds .. L[" seconds"]
+ return days .. L[" jours, "] .. hours .. L[" heures, "] .. minutes .. L[" minutes, "] .. seconds .. L[" secondes"]
 end
