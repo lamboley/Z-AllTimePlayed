@@ -1,4 +1,4 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("AllTimePlayed", "enUS")
+local L = LibStub("AceLocale-3.0"):NewLocale("ZAllTimePlayed", "enUS")
 if not L then return end
 
 L["Nettoyer le personnage courant"] = "Clean current character"
@@ -20,7 +20,7 @@ L["Couleur du total"] = "Color of total"
 
 L["FAQ"] = "FAQ"
 L["Foire aux questions"] = "Frequently Asked Questions"
-L["Qu'est-ce que AllTimePlayed ?"] = "What is AllTimePlayed ?"
+L["Qu'est-ce que Z-AllTimePlayed ?"] = "What is Z-AllTimePlayed ?"
 L["C'est un addon qui enregistre le temps joué par personnage. Il offre plusieurs façon au joueur d'afficher l'information."] = "It's an addon which record the played time per character. It give multiple way to print the info to the user."
 L["Quand est-ce que les données sont mise à jours ?"] = "When data are updated ?"
 L["Les données sont mise à jours quand"] = "Data are updated when"
@@ -31,7 +31,7 @@ L["Vous pointez votre souris sur le bouton de la minimap."] = "You mouseover the
 L["Vous rechargez votre interface."] = "You reload your UI."
 L["Vous executez la commande /played."] = "You execute the /played command."
 L["J'ai trouvé un bogue, comment puis-je te contacter ?"] = "I have found a bug, how can I contact you ?"
-L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/AllTimePlayed/issues>|r."] = "You can create a ticket on |cffffff78<https://www.wowace.com/projects/alltimeplayed/issues>|r or on |cffffff78<https://github.com/lamboley/AllTimePlayed/issues>|r."
+L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/z-alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."] = "You can create a ticket on |cffffff78<https://www.wowace.com/projects/z-alltimeplayed/issues>|r or on |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."
 
 L["Total:"] = "Total:"
 
@@ -43,3 +43,6 @@ L[" jours, "] = " days, "
 L[" heures, "] = " hours, "
 L[" minutes, "] = " minutes, "
 L[" secondes"] = " seconds"
+
+L["Bouton de la minimap"] = "Minimap button"
+L["Afficher/Cacher le bouton de la minimap"] = "Toggle minimap button"
