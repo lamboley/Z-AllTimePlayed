@@ -2,15 +2,20 @@ CHANGELOG
 All notable changes to this project will be documented in this file.
 
 1.03 (2019-05-05)
-    * Rename the addon AllTimePlayed to ZAllTimePlayed
-    * Adding support for Titan Panel and Bazooka
-    * Adding option to hide minimap button
-    * Adding slash command '/zatp' which open option window
-    
+    [Added]
+        * Adding support for Titan Panel and Bazooka
+        * Adding option to hide minimap button
+        * Adding slash command '/zatp' which open option window
+    [Changed]
+        * Rename the addon AllTimePlayed to ZAllTimePlayed
+
 1.02 (2019-05-04)
-    * Change default langage to French
-    * Resize default option window
-    * Adding FAQ tab in option window
-   
+    [Added]
+        * Adding FAQ tab in option window
+    [Changed]
+        * Change default langage to French
+        * Resize default option window
+
 1.01 (2019-05-03)
-    * Initial release
+    [Added]
+        * Initial release
