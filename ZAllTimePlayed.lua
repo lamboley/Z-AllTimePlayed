@@ -1,4 +1,8 @@
-local ZAllTimePlayed = LibStub("AceAddon-3.0"):NewAddon("ZAllTimePlayed", "AceConsole-3.0", "AceEvent-3.0")
+local ZAllTimePlayed = LibStub("AceAddon-3.0"):NewAddon(
+  "ZAllTimePlayed",
+  "AceConsole-3.0",
+  "AceEvent-3.0"
+)
 
 local playedZAllTimePlayed = false
 
@@ -34,7 +38,6 @@ local LDBObj = LibStub("LibDataBroker-1.1"):NewDataObject("ZAllTimePlayed", {
     end
   end
 })
-
 
 local myOptions = {
   type = "group",
@@ -72,8 +75,26 @@ local myOptions = {
         end
       end,
     },
-    minimapIcon = {
+    format_time = {
       order = 3,
+      type = "select",
+      name = L["Format du temps"],
+      desc = L["Selectionne le format de temps"],
+      get = function(_)
+        return ZAllTimePlayed.db.profile.format
+      end,
+      set = function(_, value)
+        ZAllTimePlayed.db.profile.format = value
+      end,
+      values = {
+        days = L["Jours"],
+        hours = L["Heures"],
+        minutes = L["Minutes"],
+        seconds = L["Secondes"]
+      },
+    },
+    minimapIcon = {
+      order = 4,
       type = "toggle",
       name = L["Bouton de la minimap"],
       desc = L["Afficher/Cacher le bouton de la minimap"],
@@ -240,6 +261,7 @@ local myOptions = {
 
 local defaults = {
   profile = {
+    format = "days",
     minimap = {
       hide = false
     },
@@ -254,56 +276,80 @@ local defaults = {
   }
 }
 
+function ZAllTimePlayed:ChatCommand(input)
+  if input == 'options' then
+    self:MenuOnOpen()
+  elseif input == 'minimap' then
+    self.db.profile.minimap.hide = not self.db.profile.minimap.hide
+    self:RefreshMinimap()
+  else
+    print("|cffa2e19fZAllTimeplayed:|r " .. L["Arguments pour"] .. " |cfffff194/zatp|r : ")
+    print("|cfffff194  options|r - " .. L["Ouvre les options."])
+    print("|cfffff194  minimap|r - " .. L["Affiche/Cache le bouton de la minimap."])
+  end
+end
+
 function ZAllTimePlayed:OnInitialize()
   self.db = LibStub("AceDB-3.0"):New("ZAllTimePlayedDB", defaults)
 
   LibStub("AceConfig-3.0"):RegisterOptionsTable("ZAllTimePlayed", myOptions)
-  AceConfigDialog:SetDefaultSize("ZAllTimePlayed", 760, 310)
-  self:RegisterChatCommand( "zatp", "MenuOnOpen")
+  AceConfigDialog:SetDefaultSize("ZAllTimePlayed", 760, 335)
+  self:RegisterChatCommand( "zatp", "ChatCommand")
 
   LibDBIcon:Register("ZAllTimePlayed", LDBObj, self.db.profile.minimap)
-  self:RegisterEvent("TIME_PLAYED_MSG")
-  self:RegisterEvent("PLAYER_ENTERING_WORLD")
-  self:RegisterEvent("PLAYER_LEAVING_WORLD")
-  self:RegisterEvent("ZONE_CHANGED")
+end
 
+function ZAllTimePlayed:OnEnable()
+  self:RegisterEvent("TIME_PLAYED_MSG")
+  self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnEvent")
+  self:RegisterEvent("PLAYER_LEAVING_WORLD", "OnEvent")
+  self:RegisterEvent("ZONE_CHANGED", "OnEvent")
+end
+
+function ZAllTimePlayed:OnDisable()
+  self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+  self:UnregisterEvent("PLAYER_LEAVING_WORLD")
+  self:UnregisterEvent("ZONE_CHANGED")
+end
+
+function ZAllTimePlayed:OnEvent()
   RequestPlayed()
 end
 
 function ZAllTimePlayed:RefreshMinimap()
-    LibStub("LibDBIcon-1.0"):Refresh("ZAllTimePlayed", self.db.profile.minimap)
+  LibStub("LibDBIcon-1.0"):Refresh("ZAllTimePlayed", self.db.profile.minimap)
 end
 
 function ZAllTimePlayed:DrawTooltip(anchor)
   RequestPlayed()
 
   if not self.tooltip then
-    self.tooltip = LibQTip:Acquire("ZAllTimePlayedTooltip", 2)
+    self.tooltip = LibQTip:Acquire("ZAllTimePlayedTooltip")
   end
 
-  local totaltime = 0
+  local ttime = 0
   local tooltip = self.tooltip
-  tooltip:SetScale(0.90)
   tooltip:Clear()
   tooltip:SmartAnchorTo(anchor)
+  tooltip:SetColumnLayout(2, "LEFT", "LEFT", "LEFT")
 
   for player,time in pairs(ZAllTimePlayedDB) do
     if (type(time) == 'number') then
-      line, _ = tooltip:AddLine()
+      line = tooltip:AddLine()
       if (UnitName("player") == player) then
-        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.current .. player .. ": ", "LEFT", 1)
-        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.current .. SecondsToDays(time), "RIGHT")
+        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.current .. player .. ": ")
+        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.current .. WriteTime(time))
       else
-        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.others .. player .. ": ", "LEFT", 1)
-        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.others .. SecondsToDays(time), "RIGHT")
+        tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.others .. player .. ": ")
+        tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.others .. WriteTime(time))
       end
-      totaltime = totaltime + time
+      ttime = ttime + time
     end
   end
 
-  line, _ = tooltip:AddLine()
-  tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.total .. L["Total:"], "LEFT", 1)
-  tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.total .. SecondsToDays(totaltime), "RIGHT")
+  line = tooltip:AddLine()
+  tooltip:SetCell(line, 1, "|cff" .. self.db.profile.color.total .. L["Total:"])
+  tooltip:SetCell(line, 2, "|cff" .. self.db.profile.color.total .. WriteTime(ttime))
 
   tooltip:Show()
 end
@@ -317,26 +363,14 @@ function ZAllTimePlayed:MenuOnOpen()
 end
 
 function ZAllTimePlayed:HideTooltip()
-    if self.tooltip then
-      LibQTip:Release(self.tooltip)
-      self.tooltip = nil
+  if self.tooltip then
+    LibQTip:Release(self.tooltip)
+    self.tooltip = nil
   end
 end
 
 function ZAllTimePlayed:TIME_PLAYED_MSG(_, total, _)
   ZAllTimePlayedDB[UnitName("player")] = total
-end
-
-function ZAllTimePlayed:PLAYER_ENTERING_WORLD()
-  RequestPlayed()
-end
-
-function ZAllTimePlayed:PLAYER_LEAVING_WORLD()
-  RequestPlayed()
-end
-
-function ZAllTimePlayed:ZONE_CHANGED()
-  RequestPlayed()
 end
 
 function VerifHexa(value)
@@ -353,26 +387,37 @@ function RequestPlayed()
 end
 
 function ShowPlaytime()
-  RequestPlayed()
-
-  local totaltime = 0
+  local ttime = 0
   for player,time in pairs(ZAllTimePlayedDB) do
     if (type(time) == 'number') then
       if (UnitName("player") == player) then
-        print("|cff" .. ZAllTimePlayed.db.profile.color.chatcurrent .. player .. " : " .. SecondsToDays(time))
+        print("|cff" .. ZAllTimePlayed.db.profile.color.chatcurrent .. player .. " : " .. WriteTime(time))
       else
-        print("|cff" .. ZAllTimePlayed.db.profile.color.chatothers .. player .. " : " .. SecondsToDays(time))
+        print("|cff" .. ZAllTimePlayed.db.profile.color.chatothers .. player .. " : " .. WriteTime(time))
       end
-      totaltime = totaltime + time
+      ttime = ttime + time
     end
   end
-  print("|cff" .. ZAllTimePlayed.db.profile.color.chattotal .. L["Temps de jeu total"] .. " : " .. SecondsToDays(totaltime) )
+  print("|cff" .. ZAllTimePlayed.db.profile.color.chattotal .. L["Temps de jeu total"] .. " : " .. WriteTime(ttime))
 end
 
-function SecondsToDays(inputSeconds)
-  d = math.floor(inputSeconds/86400)
-  h = math.floor((bit.mod(inputSeconds,86400))/3600)
-  m = math.floor(bit.mod((bit.mod(inputSeconds,86400)),3600)/60)
-  s = math.floor(bit.mod(bit.mod((bit.mod(inputSeconds,86400)),3600),60))
- return d .. L[" jours, "] .. h .. L[" heures, "] .. m .. L[" minutes, "] .. s .. L[" secondes"]
+function WriteTime(seconds)
+  if ZAllTimePlayed.db.profile.format == "days" then
+    d = math.floor(seconds/86400)
+    h = math.floor((bit.mod(seconds,86400))/3600)
+    m = math.floor(bit.mod((bit.mod(seconds,86400)),3600)/60)
+    s = math.floor(bit.mod(bit.mod((bit.mod(seconds,86400)),3600),60))
+    return d .. L[" jours, "] .. h .. L[" heures, "] .. m .. L[" minutes, "] .. s .. L[" secondes"]
+  elseif ZAllTimePlayed.db.profile.format == "hours" then
+    h = math.floor((seconds)/3600)
+    m = math.floor(bit.mod((bit.mod(seconds,86400)),3600)/60)
+    s = math.floor(bit.mod(bit.mod((bit.mod(seconds,86400)),3600),60))
+    return h .. L[" heures, "] .. m .. L[" minutes, "] .. s .. L[" secondes"]
+  elseif ZAllTimePlayed.db.profile.format == "minutes" then
+    m = math.floor(seconds/60)
+    s = math.floor(bit.mod(bit.mod((bit.mod(seconds,86400)),3600),60))
+    return m .. L[" minutes, "] .. s .. L[" secondes"]
+  elseif ZAllTimePlayed.db.profile.format == "seconds" then
+    return seconds .. L[" secondes"]
+  end
 end
