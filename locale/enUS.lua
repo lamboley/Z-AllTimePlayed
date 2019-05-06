@@ -46,3 +46,10 @@ L[" secondes"] = " seconds"
 
 L["Bouton de la minimap"] = "Minimap button"
 L["Afficher/Cacher le bouton de la minimap"] = "Toggle minimap button"
+
+L["Format du temps"] = "Format of time"
+L["Selectionne le format de temps"] = "Select the time format"
+L["Jours"] = "Days"
+L["Heures"] = "Hours"
+L["Minutes"] = "Minutes"
+L["Secondes"] = "Seconds"
