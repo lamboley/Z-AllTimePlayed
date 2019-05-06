@@ -52,3 +52,7 @@ L["Jours"] = true
 L["Heures"] = true
 L["Minutes"] = true
 L["Secondes"] = true
+
+L["Arguments pour"] = true
+L["Ouvre les options."] = true
+L["Affiche/Cache le bouton de la minimap."] = true
