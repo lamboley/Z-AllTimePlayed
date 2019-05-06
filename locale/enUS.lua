@@ -53,3 +53,7 @@ L["Jours"] = "Days"
 L["Heures"] = "Hours"
 L["Minutes"] = "Minutes"
 L["Secondes"] = "Seconds"
+
+L["Arguments pour"] = "Arguments to"
+L["Ouvre les options."] = "Open options frame."
+L["Affiche/Cache le bouton de la minimap."] = "Toggle the minimap button."
