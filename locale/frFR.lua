@@ -45,3 +45,10 @@ L[" secondes"] = true
 
 L["Bouton de la minimap"] = true
 L["Afficher/Cacher le bouton de la minimap"] = true
+
+L["Format du temps"] = true
+L["Selectionne le format de temps"] = true
+L["Jours"] = true
+L["Heures"] = true
+L["Minutes"] = true
+L["Secondes"] = true
