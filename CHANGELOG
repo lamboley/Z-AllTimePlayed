@@ -1,6 +1,12 @@
 CHANGELOG
 All notable changes to this project will be documented in this file.
 
+1.04 (2019-05-07)
+   [Added]
+        * Adding option to change the format of the time
+   [Changed]
+        * Command '/zatp' take now too argument for opening option and toggle the minimap button
+ 
 1.03 (2019-05-05)
     [Added]
         * Adding support for Titan Panel and Bazooka
