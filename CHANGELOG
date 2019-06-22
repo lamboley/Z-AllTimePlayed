@@ -1,6 +1,10 @@
 CHANGELOG
 All notable changes to this project will be documented in this file.
 
+1.05 (2019-06-22)
+   [Changed]
+        * Correction of a translation bug in FAQ tab
+
 1.04 (2019-05-07)
    [Added]
         * Adding option to change the format of the time
