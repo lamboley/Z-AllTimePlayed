@@ -251,7 +251,7 @@ local myOptions = {
         },
         line7 = {
           type = "description",
-          name = L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/Z-AllTimePlayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."] .. "\n",
+          name = L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/z-alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."] .. "\n",
           order = 7
         }
       }
