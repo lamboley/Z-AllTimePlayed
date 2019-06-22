@@ -30,7 +30,7 @@ L["Vous pointez votre souris sur le bouton de la minimap."] = true
 L["Vous rechargez votre interface."] = true
 L["Vous executez la commande /played."] = true
 L["J'ai trouvé un bogue, comment puis-je te contacter ?"] = true
-L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/Z-AllTimePlayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."] = true
+L["Vous pouvez créer un ticket sur |cffffff78<https://www.wowace.com/projects/z-alltimeplayed/issues>|r ou sur |cffffff78<https://github.com/lamboley/Z-AllTimePlayed/issues>|r."] = true
 
 L["Total:"] = true
 
