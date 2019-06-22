@@ -1,5 +1,5 @@
 ## Interface: 80100
-## Version: 1.04
+## Version: 1.05
 ## Title: Z-AllTimePlayed
 ## Notes: Show the played time for all characters.
 ## Author: arlaios
