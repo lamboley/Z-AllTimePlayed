@@ -1,9 +1,13 @@
 CHANGELOG
 All notable changes to this project will be documented in this file.
 
+1.07 (2019-07-22)
+   [Changed]
+        * Fix the interface number
+
 1.06 (2019-07-04)
    [Changed]
-        * Update interface number to 802000 in toc file
+        * Update interface number to 80200 in toc file
 
 1.05 (2019-06-22)
    [Changed]
